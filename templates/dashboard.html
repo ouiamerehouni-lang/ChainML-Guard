@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FraudGuard - Real-Time AI Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0f172a;
+            color: white;
+        }
+
+        .card {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+        }
+
+        .sidebar {
+            background-color: #1e293b;
+            width: 260px;
+            height: 100vh;
+            position: fixed;
+        }
+
+        .main-content {
+            margin-left: 260px;
+            padding: 40px;
+        }
+
+        canvas {
+            max-height: 250px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sidebar p-6 border-r border-slate-700">
+        <h2 class="text-2xl font-bold text-blue-500 mb-10 flex items-center">
+            <i class="fas fa-shield-halved mr-3"></i> FraudGuard
+        </h2>
+        <nav class="space-y-4">
+            <a href="/"
+                class="flex items-center p-3 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition">
+                <i class="fas fa-search mr-3"></i> Analyzer
+            </a>
+            <a href="/dashboard" class="flex items-center p-3 text-white bg-blue-600 rounded-lg">
+                <i class="fas fa-chart-line mr-3"></i> Dashboard
+            </a>
+        </nav>
+    </div>
+
+    <div class="main-content">
+        <header class="mb-8 flex justify-between items-center">
+            <div>
+                <h1 class="text-3xl font-bold">Monitoring Dashboard</h1>
+                <p class="text-slate-400 text-sm"></p>
+            </div>
+            <div class="flex gap-4">
+                <div class="card px-4 py-2 text-center">
+                    <span class="block text-xs text-slate-400 uppercase">Total Analyses</span>
+                    <span class="text-xl font-bold text-blue-400">{{ total_frauds + total_sains }}</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <div class="card p-6">
+                <h3 class="text-lg font-semibold mb-4 text-slate-300">Status of Scanned Addresses</h3>
+                <canvas id="pieChart"></canvas>
+            </div>
+
+            <div class="grid grid-cols-1 gap-4">
+                <div class="card p-6 border-l-4 border-red-500">
+                    <h4 class="text-slate-400 text-sm uppercase">Detected Frauds</h4>
+                    <span class="text-4xl font-bold">{{ total_frauds }}</span>
+                </div>
+                <div class="card p-6 border-l-4 border-green-500">
+                    <h4 class="text-slate-400 text-sm uppercase">Healthy Addresses</h4>
+                    <span class="text-4xl font-bold">{{ total_sains }}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card p-6">
+            <h3 class="text-lg font-semibold mb-6 flex items-center">
+                <i class="fas fa-biohazard mr-3 text-red-500"></i> Blocked Threat History
+            </h3>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                    <thead>
+                        <tr class="border-b border-slate-700 text-slate-400 text-xs uppercase">
+                            <th class="py-3 px-4">Targeted Address</th>
+                            <th class="py-3 px-4">Verdict</th>
+                            <th class="py-3 px-4">AI Model Analysis</th>
+                            <th class="py-3 px-4 text-right">Date & Time</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-sm">
+                        {% for item in blacklist %}
+                        <tr class="border-b border-slate-800 hover:bg-slate-800/50 transition">
+                            <td class="py-4 px-4 font-mono text-blue-400 text-xs">{{ item.address }}</td>
+                            <td class="py-4 px-4">
+                                <span
+                                    class="bg-red-500/10 text-red-500 px-2 py-1 rounded text-[10px] font-bold border border-red-500/20 uppercase">
+                                    {{ item.reason }}
+                                </span>
+                            </td>
+                            <td class="py-4 px-4 text-slate-400 italic text-xs">{{ item.tech_detail }}</td>
+                            <td class="py-4 px-4 text-slate-500 text-right text-xs">{{ item.date }}</td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="4" class="py-10 text-center text-slate-500">No fraud detected at the moment.
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Doughnut Chart (REAL DATA FROM FLASK)
+        const totalSains = {{ total_sains }};
+        const totalFrauds = {{ total_frauds }};
+
+        new Chart(document.getElementById('pieChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Healthy', 'Fraud'],
+                datasets: [{
+                    data: [totalSains, totalFrauds],
+                    backgroundColor: ['#10b981', '#ef4444'],
+                    borderWidth: 0,
+                    hoverOffset: 10
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom', labels: { color: '#94a3b8', font: { size: 12 } } }
+                },
+                cutout: '75%'
+            }
+        });
+    </script>
+</body>
+
+</html>

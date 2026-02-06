@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<div style="text-align: right; margin-bottom: 20px;">
+    <a href="/dashboard" class="btn-modern"
+        style="display: inline-flex; background: rgba(255,255,255,0.1); text-decoration: none; color: white;">
+        <i class="fa-solid fa-chart-pie"></i> View Global Dashboard
+    </a>
+</div>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChainML Guard - AntiGravity Edition</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <style>
+        :root {
+            /* NEW THEME: Dark Emerald + Gold */
+            --primary: #10b981;
+            --primary-dark: #047857;
+            --secondary: #d97706;
+            --success: #059669;
+            --danger: #dc2626;
+            --warning: #b45309;
+            --glass-bg: rgba(17, 24, 39, 0.9);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --shadow-lg: 0 25px 50px -12px rgba(16, 185, 129, 0.3);
+            --shadow-xl: 0 35px 60px -12px rgba(16, 185, 129, 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #111827 0%, #1f2937 50%, #374151 100%);
+            min-height: 100vh;
+            color: #f9fafb;
+            padding: 2rem 1rem;
+        }
+
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow-xl);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--success));
+            border-radius: 24px 24px 0 0;
+        }
+
+        /* Left Column - Header & Form */
+        .left-column {
+            max-width: 600px;
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .logo-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: var(--shadow-lg);
+            color: white;
+        }
+
+        .header-title {
+            background: linear-gradient(135deg, #34d399, #fbbf24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+        }
+
+        .header-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            color: #d1d5db;
+        }
+
+        .wallet-status {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 1.5rem;
+            background: rgba(16, 185, 129, 0.15);
+            border-radius: 16px;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            margin-bottom: 2rem;
+        }
+
+        .wallet-info h4 {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.25rem;
+            color: #34d399;
+        }
+
+        .address-tag {
+            font-family: 'SF Mono', 'Roboto Mono', monospace;
+            font-size: 0.9rem;
+            background: rgba(34, 197, 153, 0.2);
+            color: #34d399;
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            font-weight: 600;
+            border: 1px solid rgba(34, 197, 153, 0.4);
+        }
+
+        .modern-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-label {
+            display: block;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #d1d5db;
+        }
+
+        .modern-input {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            color: #f9fafb;
+            font-size: 1rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .modern-input::placeholder {
+            color: rgba(209, 213, 219, 0.6);
+        }
+
+        .modern-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
+        }
+
+        /* Right Column - Results */
+        .right-column {
+            max-width: 700px;
+        }
+
+        .btn-modern {
+            padding: 1.25rem 2rem;
+            border: none;
+            border-radius: 16px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-connect {
+            background: linear-gradient(135deg, var(--secondary), #f59e0b);
+            color: white;
+            box-shadow: 0 10px 25px rgba(217, 119, 6, 0.4);
+            width: auto;
+            padding: 1rem 1.75rem;
+        }
+
+        .btn-analyze {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            box-shadow: 0 15px 35px rgba(16, 185, 129, 0.5);
+            width: 100%;
+            font-size: 1.1rem;
+        }
+
+        .btn-pay {
+            background: linear-gradient(135deg, var(--success), #10b981);
+            color: white;
+            box-shadow: 0 15px 35px rgba(5, 150, 105, 0.5);
+            font-size: 1.15rem;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .btn-modern:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Results Panel */
+        .result-panel {
+            margin-top: 1rem;
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+        }
+
+        .result-panel.safe {
+            background: rgba(5, 150, 105, 0.15);
+            border: 1px solid rgba(5, 150, 105, 0.3);
+        }
+
+        .result-panel.warning {
+            background: rgba(180, 83, 9, 0.15);
+            border: 1px solid rgba(180, 83, 9, 0.3);
+        }
+
+        .result-panel.danger {
+            background: rgba(220, 38, 38, 0.15);
+            border: 1px solid rgba(220, 38, 38, 0.3);
+        }
+
+        .verdict-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .verdict-title {
+            font-size: 1.75rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .risk-score {
+            font-size: 1.25rem;
+            font-weight: 700;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        .risk-container {
+            width: 100%;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            overflow: hidden;
+        }
+
+        .risk-bar {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border-radius: 12px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 1.25rem 1rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .stat-value {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #34d399;
+        }
+
+        .status-message {
+            padding: 1.5rem;
+            border-radius: 16px;
+            margin-top: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+        }
+
+        .status-safe {
+            background: rgba(5, 150, 105, 0.25);
+            border: 1px solid rgba(5, 150, 105, 0.5);
+            color: #10b981;
+        }
+
+        .status-danger {
+            background: rgba(220, 38, 38, 0.25);
+            border: 1px solid rgba(220, 38, 38, 0.5);
+            color: #ef4444;
+            font-weight: 700;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                max-width: 800px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .wallet-status {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .verdict-header {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-container">
+        <div class="left-column">
+            <div class="glass-card">
+                <div class="header-section">
+                    <div class="logo-container">
+                        <div class="logo-icon">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                    </div>
+                    <h1 class="header-title">ChainML Guard</h1>
+                    <p class="header-subtitle">AI Analysis & Smart Contract Validation</p>
+                </div>
+
+                <div class="wallet-status">
+                    <div class="wallet-info">
+                        <h4>Connected with MetaMask</h4>
+                        <div id="walletAddr" class="address-tag">Not Connected</div>
+                    </div>
+                    <button class="btn-modern btn-connect" onclick="connectWallet()">
+                        <i class="fa-solid fa-wallet"></i>
+                        Sync MetaMask
+                    </button>
+                </div>
+
+                <form action="/analyze" method="POST" class="modern-form">
+                    <div class="input-group">
+                        <label class="input-label">Recipient Address</label>
+                        <input type="text" name="address" id="receiverInput" value="{{ address if address else '' }}"
+                            placeholder="0x1234...abcd" required class="modern-input">
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Amount to send (ETH)</label>
+                        <input type="number" step="0.0001" name="amount" id="amountInput"
+                            value="{{ amount if amount else '' }}" placeholder="0.00" required class="modern-input">
+                    </div>
+                    <button type="submit" class="btn-modern btn-analyze">
+                        <i class="fa-solid fa-brain"></i>
+                        Analyze History
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="right-column">
+            {% if address %}
+            <div class="glass-card">
+                <div class="result-panel {{ 'safe' if score < 50 else 'danger' if score > 75 else 'warning' }}">
+                    <div class="verdict-header">
+                        <h2 class="verdict-title">
+                            <i
+                                class="fa-solid {% if score < 50 %}fa-circle-check{% elif score < 75 %}fa-circle-exclamation{% else %}fa-triangle-exclamation{% endif %}"></i>
+                            {{ status }}
+                        </h2>
+                        <div class="risk-score"
+                            style="background: {{ color }}20; border: 1px solid {{ color }}40; color: {{ color }};">
+                            {{ score }}% Risk
+                        </div>
+                    </div>
+
+                    <div class="risk-container">
+                        <div class="risk-bar"
+                            style="width: {{ score }}%; background: linear-gradient(90deg, {{ color }}, {{ color }}cc);">
+                            RISK LEVEL
+                        </div>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <span class="stat-label">Balance</span>
+                            <div class="stat-value">{{ balance }} ETH</div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-label">Transactions</span>
+                            <div class="stat-value">{{ txs }}</div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-label">Age (days)</span>
+                            <div class="stat-value">{{ age|round(0) }}</div>
+                        </div>
+                    </div>
+
+                    {% if score < 50 %} <div class="status-message status-safe">
+                        <i class="fa-solid fa-circle-check"></i>
+                        Analysis complete: Transaction secured
+                </div>
+                <button type="button" class="btn-modern btn-pay" onclick="executeBlockchainTx()">
+                    <i class="fa-solid fa-shield-check"></i>
+                    Pay via FraudGuard
+                </button>
+                {% else %}
+                <div class="status-message status-danger">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    Transaction blocked: Risk detected
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% else %}
+        <div class="glass-card" style="text-align: center; padding: 4rem 2rem; color: #9ca3af;">
+            <i class="fa-solid fa-chart-line" style="font-size: 4rem; margin-bottom: 1.5rem; opacity: 0.5;"></i>
+            <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">No results</h3>
+            <p>Enter an address to start AI analysis</p>
+        </div>
+        {% endif %}
+    </div>
+    </div>
+
+    <script>
+        // LOGIC 100% UNCHANGED
+        const contractAddr = "0x6dE7B5F4fea9482D23D64e6ad1A5AdD3A1327df8";
+        const contractABI = [
+            { "inputs": [], "stateMutability": "nonpayable", "type": "constructor" },
+            { "inputs": [{ "internalType": "address payable", "name": "_to", "type": "address" }], "name": "secureTransfer", "outputs": [], "stateMutability": "payable", "type": "function" }
+        ];
+
+        async function connectWallet() {
+            if (window.ethereum) {
+                try {
+                    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                    document.getElementById('walletAddr').innerText = accounts[0].slice(0, 6) + '...' + accounts[0].slice(-4);
+                } catch (err) { console.error(err); }
+            } else { alert("Please install MetaMask!"); }
+        }
+
+        async function executeBlockchainTx() {
+            const web3 = new Web3(window.ethereum);
+            const toAddr = document.getElementById('receiverInput').value;
+            const amountEth = document.getElementById('amountInput').value;
+
+            if (!toAddr || !amountEth || parseFloat(amountEth) <= 0) {
+                alert("Error: Please enter a valid address and amount.");
+                return;
+            }
+
+            try {
+                const accounts = await web3.eth.getAccounts();
+                const contract = new web3.eth.Contract(contractABI, contractAddr);
+                const amountWei = web3.utils.toWei(amountEth.toString(), 'ether');
+
+                await contract.methods.secureTransfer(toAddr).send({
+                    from: accounts[0],
+                    value: amountWei,
+                    gas: 150000,
+                    gasPrice: '20000000000'
+                });
+
+                alert("✅ Transaction successful!");
+            } catch (error) {
+                console.error("Details:", error);
+                alert("Error: " + error.message);
+            }
+        }
+
+        window.onload = connectWallet;
+    </script>
+</body>
+
+</html>

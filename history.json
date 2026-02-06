@@ -1,0 +1,345 @@
+[
+    {
+        "address": "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D",
+        "reason": "Approved",
+        "tech_detail": "AI Analysis: 6.07% risk score based on transactional flows.",
+        "date": "2026-02-05 20:57:47",
+        "is_fraud": false
+    },
+    {
+        "address": "0xD275acc4431F5643F466A7636F2f1B62668CC75A",
+        "reason": "Fraud Detected",
+        "tech_detail": "AI Analysis: 71.44% risk score based on transactional flows.",
+        "date": "2026-02-05 20:57:13",
+        "is_fraud": true
+    },
+    {
+        "address": "0xc074cd98bD073e6Db147B11710F97C3a27441471",
+        "reason": "Fraud Detected",
+        "tech_detail": "AI Analysis: 92.18% risk score based on transactional flows.",
+        "date": "2026-02-05 19:57:29",
+        "is_fraud": true
+    },
+    {
+        "address": "0x0d0253eb35A30c6698A009a60b7EA11bE7909CAf",
+        "reason": "Approved",
+        "tech_detail": "AI Analysis: 0.03% risk score based on transactional flows.",
+        "date": "2026-02-05 19:56:29",
+        "is_fraud": false
+    },
+    {
+        "address": "0x42d841E3c15282F8d6337714469B2d30870ce12a",
+        "reason": "Approved",
+        "tech_detail": "AI Analysis: 31.08% risk score based on transactional flows.",
+        "date": "2026-02-05 19:55:48",
+        "is_fraud": false
+    },
+    {
+        "address": "0x97E13DFDDBF76195DC5Ecbb8C46189809F974329",
+        "reason": "Approved",
+        "tech_detail": "AI Analysis: 31.11% risk score based on transactional flows.",
+        "date": "2026-02-05 19:55:00",
+        "is_fraud": false
+    },
+    {
+        "address": "0x283A915283c5ACD42aD2fa4bc6cA91aCb95fE2b5",
+        "reason": "Approved",
+        "tech_detail": "AI Analysis: 31.03% risk score based on transactional flows.",
+        "date": "2026-02-05 19:54:17",
+        "is_fraud": false
+    },
+    {
+        "address": "0xD275acc4431F5643F466A7636F2f1B62668CC75A",
+        "reason": "Fraud Detected",
+        "tech_detail": "AI Analysis: 71.43% risk score based on transactional flows.",
+        "date": "2026-02-05 19:53:53",
+        "is_fraud": true
+    },
+    {
+        "address": "0x9FC3da866e7DF3a1c57adE1a97c9f00a70f010c8",
+        "reason": "Approved",
+        "tech_detail": "AI Analysis: 0.02% risk score based on transactional flows.",
+        "date": "2026-02-05 19:53:12",
+        "is_fraud": false
+    },
+    {
+        "address": "0xD275acc4431F5643F466A7636F2f1B62668CC75A",
+        "reason": "Fraud Detected",
+        "tech_detail": "AI Analysis: 71.11% risk score based on transactional flows.",
+        "date": "2026-02-04 12:55:30",
+        "is_fraud": true
+    },
+    {
+        "address": "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D",
+        "reason": "Approved",
+        "tech_detail": "AI Analysis: 6.03% risk score based on transactional flows.",
+        "date": "2026-02-04 12:54:32",
+        "is_fraud": false
+    },
+    {
+        "address": "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D",
+        "reason": "Approved",
+        "tech_detail": "AI Analysis: 6.02% risk score based on transactional flows.",
+        "date": "2026-02-04 08:33:49",
+        "is_fraud": false
+    },
+    {
+        "address": "0xD275acc4431F5643F466A7636F2f1B62668CC75A",
+        "reason": "Fraud Detected",
+        "tech_detail": "AI Analysis: 71.07% risk score based on transactional flows.",
+        "date": "2026-02-04 08:32:47",
+        "is_fraud": true
+    },
+    {
+        "address": "0xD275acc4431F5643F466A7636F2f1B62668CC75A",
+        "reason": "Fraude D\u00e9tect\u00e9e",
+        "tech_detail": "Analyse IA : Score de risque 71.07% bas\u00e9 sur les flux transactionnels.",
+        "date": "2026-02-04 08:28:08",
+        "is_fraud": true
+    },
+    {
+        "address": "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D",
+        "reason": "Approuv\u00e9",
+        "tech_detail": "Analyse IA : Score de risque 6.02% bas\u00e9 sur les flux transactionnels.",
+        "date": "2026-02-04 08:11:49",
+        "is_fraud": false
+    },
+    {
+        "address": "0x1111111254fb6c44bac0bed2854e76f90643097d",
+        "reason": "Approuv\u00e9",
+        "tech_detail": "Analyse IA : Score de risque 0.46% bas\u00e9 sur les flux transactionnels.",
+        "date": "2026-02-04 08:11:12",
+        "is_fraud": false
+    },
+    {
+        "address": "0x64dE3f28c533469cb17C206675A955cA0bBB4E69",
+        "reason": "Approuv\u00e9",
+        "tech_detail": "Analyse IA : Score de risque 0.0% bas\u00e9 sur les flux transactionnels.",
+        "date": "2026-02-04 08:10:30",
+        "is_fraud": false
+    },
+    {
+        "address": "0x283A915283c5ACD42aD2fa4bc6cA91aCb95fE2b5",
+        "reason": "Approuv\u00e9",
+        "tech_detail": "Analyse IA : Score de risque 29.05% bas\u00e9 sur les flux transactionnels.",
+        "date": "2026-01-29 00:28:48",
+        "is_fraud": false
+    },
+    {
+        "address": "0xD275acc4431F5643F466A7636F2f1B62668CC75A",
+        "reason": "Fraude D\u00e9tect\u00e9e",
+        "tech_detail": "Analyse IA : Score de risque 69.47% bas\u00e9 sur les flux transactionnels.",
+        "date": "2026-01-29 00:27:55",
+        "is_fraud": true
+    },
+    {
+        "address": "0x97E13DFDDBF76195DC5Ecbb8C46189809F974329",
+        "reason": "Approuv\u00e9",
+        "tech_detail": "Analyse IA : Score de risque 29.13% bas\u00e9 sur les flux transactionnels.",
+        "date": "2026-01-29 00:27:25",
+        "is_fraud": false
+    },
+    {
+        "address": "0x97E13DFDDBF76195DC5Ecbb8C46189809F974329",
+        "reason": "Approuv\u00e9",
+        "tech_detail": "Analyse IA : Score de risque 29.13% bas\u00e9 sur les flux transactionnels.",
+        "date": "2026-01-29 00:26:36",
+        "is_fraud": false
+    },
+    {
+        "address": "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D",
+        "reason": "Approuv\u00e9",
+        "tech_detail": "Analyse IA : Score de risque 5.8% bas\u00e9 sur les flux transactionnels.",
+        "date": "2026-01-29 00:26:07",
+        "is_fraud": false
+    },
+    {
+        "address": "0x64dE3f28c533469cb17C206675A955cA0bBB4E69",
+        "reason": "Approuv\u00e9",
+        "tech_detail": "Analyse IA : Score de risque 0.0% bas\u00e9 sur les flux transactionnels.",
+        "date": "2026-01-29 00:14:21",
+        "is_fraud": false
+    },
+    {
+        "address": "0x64dE3f28c533469cb17C206675A955cA0bBB4E69",
+        "reason": "Approuv\u00e9",
+        "tech_detail": "Analyse IA : Score de risque 0.0% bas\u00e9 sur les flux transactionnels.",
+        "date": "2026-01-29 00:10:14",
+        "is_fraud": false
+    },
+    {
+        "address": "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D",
+        "reason": "Approuv\u00e9",
+        "tech_detail": "Analyse IA : Score de risque 2.64% bas\u00e9 sur les flux transactionnels.",
+        "date": "2026-01-28 22:19:04",
+        "is_fraud": false
+    },
+    {
+        "address": "0x77Ad3a15b78101883AF36aD4A875e17c86C65A1A",
+        "reason": "Fraude D\u00e9tect\u00e9e",
+        "tech_detail": "Analyse IA : Score de risque 86.56% bas\u00e9 sur les flux transactionnels.",
+        "date": "2026-01-28 22:18:29",
+        "is_fraud": true
+    },
+    {
+        "address": "0x64dE3f28c533469cb17C206675A955cA0bBB4E69",
+        "reason": "Approuv\u00e9",
+        "tech_detail": "Analyse IA : Score de risque 0.0% bas\u00e9 sur les flux transactionnels.",
+        "date": "2026-01-28 22:17:30",
+        "is_fraud": false
+    },
+    {
+        "address": "0x1111111254fb6c44bac0bed2854e76f90643097d",
+        "reason": "Approuv\u00e9",
+        "tech_detail": "Analyse IA : Score de risque 0.2% bas\u00e9 sur les flux transactionnels.",
+        "date": "2026-01-28 22:16:51",
+        "is_fraud": false
+    },
+    {
+        "address": "0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B",
+        "reason": "Fraude D\u00e9tect\u00e9e",
+        "tech_detail": "Analyse IA : Score de risque 99.77% bas\u00e9 sur les flux transactionnels.",
+        "date": "2026-01-28 22:16:30",
+        "is_fraud": true
+    },
+    {
+        "address": "0x28C6c06290d512736A744736182440D05902C046",
+        "reason": "Fraude D\u00e9tect\u00e9e",
+        "tech_detail": "Analyse IA : Score de risque 86.56% bas\u00e9 sur les flux transactionnels.",
+        "date": "2026-01-28 22:15:55",
+        "is_fraud": true
+    },
+    {
+        "address": "0x00000000219ab540356cBB839C75111E844dc004",
+        "reason": "Fraude D\u00e9tect\u00e9e",
+        "tech_detail": "Analyse IA : Score de risque 86.56% bas\u00e9 sur les flux transactionnels.",
+        "date": "2026-01-28 22:15:35",
+        "is_fraud": true
+    },
+    {
+        "address": "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D",
+        "reason": "Fraude D\u00e9tect\u00e9e",
+        "tech_detail": "Analyse IA : Score de risque 84.42% bas\u00e9 sur les flux transactionnels.",
+        "date": "2026-01-28 21:50:23",
+        "is_fraud": true
+    },
+    {
+        "address": "0x1111111254fb6c44bac0bed2854e76f90643097d",
+        "reason": "Approuv\u00e9",
+        "tech_detail": "Analyse IA : Score de risque 4.19% bas\u00e9 sur les flux transactionnels.",
+        "date": "2026-01-28 21:49:55",
+        "is_fraud": false
+    },
+    {
+        "address": "0x00000000219ab540356cBB839C75111E844dc004",
+        "reason": "Fraude D\u00e9tect\u00e9e",
+        "tech_detail": "Analyse IA : Score de risque 99.89% bas\u00e9 sur les flux transactionnels.",
+        "date": "2026-01-28 21:48:56",
+        "is_fraud": true
+    },
+    {
+        "address": "0x64dE3f28c533469cb17C206675A955cA0bBB4E69",
+        "reason": "Approuv\u00e9",
+        "tech_detail": "Analyse IA : Score de risque 0.14% bas\u00e9 sur les flux transactionnels.",
+        "date": "2026-01-28 21:30:37",
+        "is_fraud": false
+    },
+    {
+        "address": "0x97E13DFDDBF76195DC5Ecbb8C46189809F974329",
+        "reason": "Fraude D\u00e9tect\u00e9e",
+        "tech_detail": "Analyse IA : Score de risque 96.72% bas\u00e9 sur les flux transactionnels.",
+        "date": "2026-01-28 21:30:14",
+        "is_fraud": true
+    },
+    {
+        "address": "0x64dE3f28c533469cb17C206675A955cA0bBB4E69",
+        "reason": "Approuv\u00e9",
+        "tech_detail": "Analyse IA : Score de risque 0.14% bas\u00e9 sur les flux transactionnels.",
+        "date": "2026-01-28 21:28:48",
+        "is_fraud": false
+    },
+    {
+        "address": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+        "reason": "Fraude D\u00e9tect\u00e9e",
+        "tech_detail": "Analyse IA : Score de risque 100.0% bas\u00e9 sur les flux transactionnels.",
+        "date": "2026-01-28 21:17:45",
+        "is_fraud": true
+    },
+    {
+        "address": "0x7EF360bC406585201a9a8E9141D2965Dfe43D07b",
+        "reason": "Fraude D\u00e9tect\u00e9e",
+        "tech_detail": "Analyse IA : Score de risque 99.7% bas\u00e9 sur les flux transactionnels.",
+        "date": "2026-01-28 21:17:26",
+        "is_fraud": true
+    },
+    {
+        "address": "0x7EF360bC406585201a9a8E9141D2965Dfe43D07b",
+        "reason": "Fraude D\u00e9tect\u00e9e",
+        "tech_detail": "Analyse IA : Score de risque 99.7% bas\u00e9 sur les flux transactionnels.",
+        "date": "2026-01-28 21:16:38",
+        "is_fraud": true
+    },
+    {
+        "address": "0x7EF360bC406585201a9a8E9141D2965Dfe43D07b",
+        "reason": "Fraude D\u00e9tect\u00e9e",
+        "tech_detail": "Analyse IA : Score de risque 99.7% bas\u00e9 sur les flux transactionnels.",
+        "date": "2026-01-28 21:14:32",
+        "is_fraud": true
+    },
+    {
+        "address": "0x7EF360bC406585201a9a8E9141D2965Dfe43D07b",
+        "reason": "Fraude D\u00e9tect\u00e9e",
+        "tech_detail": "Analyse IA : Score de risque 99.7% bas\u00e9 sur les flux transactionnels.",
+        "date": "2026-01-28 21:14:20",
+        "is_fraud": true
+    },
+    {
+        "address": "0x7EF360bC406585201a9a8E9141D2965Dfe43D07b",
+        "reason": "Fraude D\u00e9tect\u00e9e",
+        "tech_detail": "Analyse IA : Score de risque 99.7% bas\u00e9 sur les flux transactionnels.",
+        "date": "2026-01-28 21:14:09",
+        "is_fraud": true
+    },
+    {
+        "address": "0xbaC69Ab56732BDB18E082421954f621f1767C783",
+        "reason": "Fraude D\u00e9tect\u00e9e",
+        "tech_detail": "Analyse IA : Score de risque 90.65% bas\u00e9 sur les flux transactionnels.",
+        "date": "2026-01-28 21:13:24",
+        "is_fraud": true
+    },
+    {
+        "address": "0x97E13DFDDBF76195DC5Ecbb8C46189809F974329",
+        "reason": "Fraude D\u00e9tect\u00e9e",
+        "tech_detail": "Analyse IA : Score de risque 96.45% bas\u00e9 sur les flux transactionnels.",
+        "date": "2026-01-07 01:23:13",
+        "is_fraud": true
+    },
+    {
+        "address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+        "reason": "Approuv\u00e9",
+        "tech_detail": "Analyse IA : Score de risque 0.0% bas\u00e9 sur les flux transactionnels.",
+        "date": "2026-01-07 01:21:40",
+        "is_fraud": false
+    },
+    {
+        "address": "0x4114FB8B1879f61b18f7d2E623569a847a03e15A",
+        "reason": "Fraude D\u00e9tect\u00e9e",
+        "tech_detail": "Analyse IA : Score de risque 99.98% bas\u00e9 sur les flux transactionnels.",
+        "date": "2026-01-06 00:43:47",
+        "is_fraud": true
+    },
+    {
+        "address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+        "reason": "Approuv\u00e9",
+        "tech_detail": "Analyse IA : Score de risque 0.0% bas\u00e9 sur les flux transactionnels.",
+        "date": "2026-01-06 00:42:43",
+        "is_fraud": false
+    },
+    {
+        "address": "0x97E13DFDDBF76195DC5Ecbb8C46189809F974329",
+        "reason": "Fraude D\u00e9tect\u00e9e",
+        "tech_detail": "Analyse IA : Score de risque 96.44% bas\u00e9 sur les flux transactionnels.",
+        "date": "2026-01-06 00:41:56",
+        "is_fraud": true
+    }
+]
