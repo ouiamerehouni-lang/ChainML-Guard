@@ -1,20 +1,28 @@
-# 1. Utiliser une image Python officielle
-FROM python:3.9-slim
+# Use Python 3.11 for better compatibility with TensorFlow and Scikit-Learn
+FROM python:3.11-slim
 
-# 2. Définir le dossier de travail dans le conteneur
+# Set the working directory inside the container
 WORKDIR /app
 
-# 3. Copier le fichier des dépendances
+# Install system tools needed for building certain Python packages
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    && rm -rf /var/lib/apt-get/lists/*
+
+# Copy only requirements first to optimize Docker layer caching
 COPY requirements.txt .
 
-# 4. Installer les bibliothèques
+# Install dependencies without saving cache to keep the image light
 RUN pip install --no-cache-dir -r requirements.txt
 
-# 5. Copier tout le reste du projet dans le conteneur
+# Copy all project files into the container
 COPY . .
 
-# 6. Exposer le port utilisé par Flask (5000)
+# Inform Docker that the container listens on port 5000
 EXPOSE 5000
 
-# 7. Lancer l'application
+# Set environment variable to ensure Flask logs are visible in real-time
+ENV PYTHONUNBUFFERED=1
+
+# Run the application
 CMD ["python", "app.py"]
