@@ -9,25 +9,25 @@ from data_collection import get_address_features
 
 app = Flask(__name__)
 
-# --- CONFIGURATION AND PATHS ---
+# CONFIGURATION AND PATHS
 MODEL_PATH = 'models/fraud_model.h5'
 SCALER_PATH = 'models/scaler.pkl'
 HISTORY_FILE = 'history.json'
 
-# --- 1. AI LOADING ---
+# 1. AI LOADING
 if os.path.exists(MODEL_PATH) and os.path.exists(SCALER_PATH):
     model = load_model(MODEL_PATH)
     with open(SCALER_PATH, 'rb') as f:
         scaler = pickle.load(f)
-    print(" AI and Scaler loaded successfully.")
+    print("AI and Scaler loaded successfully.")
 else:
     model = None
     scaler = None
-    print(" Error: AI files not found.")
+    print("Error: AI files not found.")
 
-# --- REAL SAVE FUNCTION ---
+# REAL SAVE FUNCTION
 def save_to_history(address, score, is_fraud):
-    """Saves the analysis in a JSON file for the Dashboard"""
+    """Saves the analysis into a JSON file for the dashboard"""
     new_entry = {
         "address": address,
         "reason": "Fraud Detected" if is_fraud else "Approved",
@@ -44,11 +44,11 @@ def save_to_history(address, score, is_fraud):
         except:
             data = []
     
-    data.insert(0, new_entry)  # Adds to top of list
+    data.insert(0, new_entry)  # Add entry at the top of the list
     with open(HISTORY_FILE, 'w') as f:
         json.dump(data, f, indent=4)
 
-# --- 2. ROUTES ---
+# 2. ROUTES
 
 @app.route('/')
 def index():
@@ -67,13 +67,13 @@ def analyze():
     if raw_features is None:
         return render_template('index.html', error="Unable to reach the blockchain.")
 
-    # B. AI Prediction
+    # B. AI prediction
     input_scaled = scaler.transform(np.array([raw_features]))
     prediction_prob = model.predict(input_scaled)[0][0]
     risk_score = round(float(prediction_prob) * 100, 2)
     
-    # C. Binary Logic (Healthy or Fraud)
-    # Threshold set at 50%
+    # C. Binary decision logic (Legitimate or Fraud)
+    # Threshold set to 50%
     is_fraud = risk_score >= 50
     
     if is_fraud:
@@ -81,35 +81,43 @@ def analyze():
     else:
         result_text, result_color = "HEALTHY: No fraud pattern detected", "#16a34a"
 
-    # D. Save for the Dashboard
+    # D. Save results for the dashboard
     save_to_history(address, risk_score, is_fraud)
 
-    return render_template('index.html', 
-                           address=address, amount=amount, 
-                           score=risk_score, status=result_text, 
-                           color=result_color, balance=raw_features[0],
-                           txs=raw_features[1], age=raw_features[2])
+    return render_template(
+        'index.html', 
+        address=address,
+        amount=amount, 
+        score=risk_score,
+        status=result_text, 
+        color=result_color,
+        balance=raw_features[0],
+        txs=raw_features[1],
+        age=raw_features[2]
+    )
 
 @app.route('/dashboard')
 def dashboard():
-    # Real history loading
+    # Load analysis history
     history = []
     if os.path.exists(HISTORY_FILE):
         with open(HISTORY_FILE, 'r') as f:
             history = json.load(f)
 
-    # Filtering: Display only real frauds detected in the table
+    # Filtering: show only detected frauds in the table
     frauds_only = [item for item in history if item['is_fraud']]
     
-    # Stats calculation for charts (Real data)
+    # Statistics calculation for charts (real data)
     total_frauds = len(frauds_only)
     total_sains = len([item for item in history if not item['is_fraud']])
 
-    return render_template('dashboard.html', 
-                           blacklist=frauds_only,
-                           total_frauds=total_frauds,
-                           total_sains=total_sains)
+    return render_template(
+        'dashboard.html', 
+        blacklist=frauds_only,
+        total_frauds=total_frauds,
+        total_sains=total_sains
+    )
 
-# --- 3. LAUNCH ---
+# 3. APPLICATION LAUNCH
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
