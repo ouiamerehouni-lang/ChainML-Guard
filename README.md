@@ -23,19 +23,22 @@ Ganache for local blockchain simulation.
 MetaMask configured on the Ganache network (RPC: http://127.0.0.1:7545).
 
 2. Clone the Repository
-Bash
+
 git clone https://github.com/ouiamerehouni-lang/ChainML-Guard.git
+
 cd ChainML-Guard
-3. Launch the Application with Docker
+
+4. Launch the Application with Docker
 Run the following two commands in your terminal:
 
 Build the image:
 
-Bash
 docker build -t chainml-guard .
+
 Run the container:
 
-Bash
 docker run -p 5000:5000 chainml-guard
+
 4. Access the Interface
+
 Open your web browser and navigate to the following address: http://localhost:5000
