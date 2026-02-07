@@ -29,5 +29,5 @@ def check_address(address):
             f"API error: {bal_res.get('result') if bal_res['status'] != '1' else tx_res.get('result')}"
         )
 
-# Test on a known address from your list
+# Test 
 check_address("0x28C6c06298d514Db089934071355E5743bf21d60")  # Darklist
