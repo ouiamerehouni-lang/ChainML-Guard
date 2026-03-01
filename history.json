@@ -1,5 +1,124 @@
 [
     {
+        "address": "0xe1A5FB25a102f258a6F2F5fa351decC8e00fb72f",
+        "reason": "Fraud Detected",
+        "tech_detail": "AI Analysis: 91.47% risk score based on transactional flows.",
+        "date": "2026-02-28 23:39:51",
+        "is_fraud": true
+    },
+    {
+        "address": "0xD275acc4431F5643F466A7636F2f1B62668CC75A",
+        "reason": "Fraud Detected",
+        "tech_detail": "AI Analysis: 76.79% risk score based on transactional flows.",
+        "date": "2026-02-28 23:39:33",
+        "is_fraud": true
+    },
+    {
+        "address": "0xD275acc4431F5643F466A7636F2f1B62668CC75A",
+        "reason": "Fraud Detected",
+        "tech_detail": "AI Analysis: 76.79% risk score based on transactional flows.",
+        "date": "2026-02-28 23:39:31",
+        "is_fraud": true
+    },
+    {
+        "address": "0xD275acc4431F5643F466A7636F2f1B62668CC75A",
+        "reason": "Fraud Detected",
+        "tech_detail": "AI Analysis: 76.79% risk score based on transactional flows.",
+        "date": "2026-02-28 23:39:20",
+        "is_fraud": true
+    },
+    {
+        "address": "0xD275acc4431F5643F466A7636F2f1B62668CC75A",
+        "reason": "Fraud Detected",
+        "tech_detail": "AI Analysis: 76.79% risk score based on transactional flows.",
+        "date": "2026-02-28 23:32:56",
+        "is_fraud": true
+    },
+    {
+        "address": "0x0000000000000000000010000000000000000000",
+        "reason": "Fraud Detected",
+        "tech_detail": "AI Analysis: 91.47% risk score based on transactional flows.",
+        "date": "2026-02-28 23:26:19",
+        "is_fraud": true
+    },
+    {
+        "address": "0x0000000000000000000000000000000000000000",
+        "reason": "Fraud Detected",
+        "tech_detail": "AI Analysis: 58.7% risk score based on transactional flows.",
+        "date": "2026-02-28 23:25:27",
+        "is_fraud": true
+    },
+    {
+        "address": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+        "reason": "Fraud Detected",
+        "tech_detail": "AI Analysis: 98.5% risk score based on transactional flows.",
+        "date": "2026-02-28 23:24:06",
+        "is_fraud": true
+    },
+    {
+        "address": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+        "reason": "Fraud Detected",
+        "tech_detail": "AI Analysis: 90.07% risk score based on transactional flows.",
+        "date": "2026-02-28 23:23:53",
+        "is_fraud": true
+    },
+    {
+        "address": "0x3f5CE5FBFe3E9af3971dD833D26bA9b5C936f0bE",
+        "reason": "Fraud Detected",
+        "tech_detail": "AI Analysis: 98.94% risk score based on transactional flows.",
+        "date": "2026-02-28 23:23:39",
+        "is_fraud": true
+    },
+    {
+        "address": "0xD275acc4431F5643F466A7636F2f1B62668CC75A",
+        "reason": "Fraud Detected",
+        "tech_detail": "AI Analysis: 76.79% risk score based on transactional flows.",
+        "date": "2026-02-28 23:23:05",
+        "is_fraud": true
+    },
+    {
+        "address": "0xD275acc4431F5643F466A7636F2f1B62668CC75A",
+        "reason": "Fraud Detected",
+        "tech_detail": "AI Analysis: 76.79% risk score based on transactional flows.",
+        "date": "2026-02-28 23:23:05",
+        "is_fraud": true
+    },
+    {
+        "address": "0xD275acc4431F5643F466A7636F2f1B62668CC75A",
+        "reason": "Fraud Detected",
+        "tech_detail": "AI Analysis: 76.79% risk score based on transactional flows.",
+        "date": "2026-02-28 23:23:01",
+        "is_fraud": true
+    },
+    {
+        "address": "0xD275acc4431F5643F466A7636F2f1B62668CC75A",
+        "reason": "Fraud Detected",
+        "tech_detail": "AI Analysis: 76.79% risk score based on transactional flows.",
+        "date": "2026-02-28 23:22:59",
+        "is_fraud": true
+    },
+    {
+        "address": "0xe1A5FB25a102f258a6F2F5fa351decC8e00fb72f",
+        "reason": "Fraud Detected",
+        "tech_detail": "AI Analysis: 91.47% risk score based on transactional flows.",
+        "date": "2026-02-28 23:11:54",
+        "is_fraud": true
+    },
+    {
+        "address": "0xe1A5FB25a102f258a6F2F5fa351decC8e00fb72f",
+        "reason": "Fraud Detected",
+        "tech_detail": "AI Analysis: 91.47% risk score based on transactional flows.",
+        "date": "2026-02-28 23:11:54",
+        "is_fraud": true
+    },
+    {
+        "address": "0xD275acc4431F5643F466A7636F2f1B62668CC75A",
+        "reason": "Fraud Detected",
+        "tech_detail": "AI Analysis: 76.79% risk score based on transactional flows.",
+        "date": "2026-02-28 23:09:26",
+        "is_fraud": true
+    },
+    {
         "address": "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D",
         "reason": "Approved",
         "tech_detail": "AI Analysis: 6.07% risk score based on transactional flows.",

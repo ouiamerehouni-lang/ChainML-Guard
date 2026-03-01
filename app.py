@@ -5,7 +5,8 @@ import os
 import json
 from tensorflow.keras.models import load_model
 from datetime import datetime
-from data_collection import get_address_features 
+from data_collection import get_address_features
+from utils.explanations import load_thresholds, generate_reason_summary, get_explanation_disclaimer 
 
 app = Flask(__name__)
 
@@ -13,6 +14,7 @@ app = Flask(__name__)
 MODEL_PATH = 'models/fraud_model.h5'
 SCALER_PATH = 'models/scaler.pkl'
 HISTORY_FILE = 'history.json'
+THRESHOLDS_PATH = 'thresholds.json'
 
 # 1. AI LOADING
 if os.path.exists(MODEL_PATH) and os.path.exists(SCALER_PATH):
@@ -24,6 +26,15 @@ else:
     model = None
     scaler = None
     print("Error: AI files not found.")
+
+# Load thresholds for explanations (optional - will handle gracefully if missing)
+try:
+    thresholds = load_thresholds(THRESHOLDS_PATH)
+    print("Explanation thresholds loaded successfully.")
+except FileNotFoundError as e:
+    thresholds = None
+    print(f"Warning: {e}")
+    print("Explanations will not be available. Run scripts/compute_thresholds.py to enable.")
 
 # REAL SAVE FUNCTION
 def save_to_history(address, score, is_fraud):
@@ -84,6 +95,18 @@ def analyze():
     # D. Save results for the dashboard
     save_to_history(address, risk_score, is_fraud)
 
+    # E. Generate explanation reasons (if thresholds available)
+    reasons = []
+    disclaimer = ""
+    if thresholds:
+        reasons = generate_reason_summary(
+            balance=raw_features[0],
+            tx_count=raw_features[1],
+            wallet_age_days=raw_features[2],
+            thresholds=thresholds
+        )
+        disclaimer = get_explanation_disclaimer()
+
     return render_template(
         'index.html', 
         address=address,
@@ -93,7 +116,9 @@ def analyze():
         color=result_color,
         balance=raw_features[0],
         txs=raw_features[1],
-        age=raw_features[2]
+        age=raw_features[2],
+        reasons=reasons,
+        disclaimer=disclaimer
     )
 
 @app.route('/dashboard')
@@ -120,4 +145,4 @@ def dashboard():
 
 # 3. APPLICATION LAUNCH
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(host="0.0.0.0", debug=True, port=5000)

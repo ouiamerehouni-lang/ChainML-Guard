@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  # Main Flask application
+  chainml-guard:
+    build: .
+    container_name: chainml-guard-app
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+    command: python app.py
+
+  # Service for running threshold computation (run with: docker-compose run --rm compute-thresholds)
+  compute-thresholds:
+    build: .
+    container_name: chainml-guard-thresholds
+    volumes:
+      - .:/app
+    command: python scripts/compute_thresholds.py
+    profiles:
+      - tools
+
+  # Service for testing (run with: docker-compose run --rm test)
+  test:
+    build: .
+    container_name: chainml-guard-test
+    volumes:
+      - .:/app
+    command: python test_explanation_feature.py
+    profiles:
+      - tools
