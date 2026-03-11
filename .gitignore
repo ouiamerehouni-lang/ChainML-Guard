@@ -10,6 +10,10 @@ ENV/
 *.pkl
 *.joblib
 
+# Environment variables
+.env
+.env.local
+
 # Node
 node_modules/
 npm-debug.log*

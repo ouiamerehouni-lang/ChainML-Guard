@@ -1,8 +1,11 @@
 import requests
 import time
 import json
+import os
 
-API_KEY = "A834WGSZC8GVJR4W5G5SFJMQESY2Q6XVTF"
+API_KEY = os.getenv('ETHERSCAN_API_KEY')
+if not API_KEY:
+    raise ValueError("ETHERSCAN_API_KEY environment variable not set. Please create a .env file or set the variable.")
 BASE_URL = "https://api.etherscan.io/v2/api"
 
 def get_recent_safe_addresses(limit=160):

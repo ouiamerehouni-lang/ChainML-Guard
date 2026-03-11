@@ -3,10 +3,14 @@ import numpy as np
 import pickle
 import os
 import json
+from dotenv import load_dotenv
 from tensorflow.keras.models import load_model
 from datetime import datetime
 from data_collection import get_address_features
 from utils.explanations import load_thresholds, generate_reason_summary, get_explanation_disclaimer 
+
+# Load environment variables from .env file
+load_dotenv()
 
 app = Flask(__name__)
 

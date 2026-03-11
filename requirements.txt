@@ -4,3 +4,4 @@ pandas
 requests
 tensorflow
 scikit-learn
+python-dotenv
