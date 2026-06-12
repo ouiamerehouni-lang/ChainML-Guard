@@ -41,7 +41,8 @@ Crypto scams cost users billions of dollars every year through:
 ### The Solution
 
 ChainML Guard analyzes Ethereum addresses in real time using:
-- Three machine learning models (MLP Neural Network, Random Forest, Logistic Regression)
+- A deployed MLP Neural Network for application inference
+- Benchmark comparison models (Random Forest and Logistic Regression)
 - Live blockchain signals from the Etherscan API
 - Explainable AI outputs that show why an address is flagged
 - High-accuracy model evaluation and validation
@@ -51,9 +52,10 @@ ChainML Guard analyzes Ethereum addresses in real time using:
 ## Key Features
 
 ### AI-Powered Detection
-- Three machine learning models:
-  - MLP Neural Network: deep learning for nonlinear patterns
-  - Random Forest: strongest overall production performance
+- Application model:
+  - MLP Neural Network: deployed model for fraud screening in the application
+- Benchmark models:
+  - Random Forest: strongest benchmark performance in evaluation
   - Logistic Regression: fast baseline for comparison
 - Real-time prediction in seconds
 - Model comparison workflow for iterative improvement
@@ -85,10 +87,10 @@ ChainML Guard analyzes Ethereum addresses in real time using:
 1. User submits Ethereum address
 2. System fetches live data from Etherscan (balance, transactions, age)
 3. Features are preprocessed using StandardScaler
-4. ML model computes fraud probability
+4. MLP model computes fraud probability
 5. Explanation layer generates reason codes
 6. UI returns risk score, status, and supporting details
-```
+````
 
 ---
 
@@ -97,25 +99,29 @@ ChainML Guard analyzes Ethereum addresses in real time using:
 Before running the project, make sure you have:
 
 ### Required
-- Python 3.11+
-- Etherscan API key ([create one here](https://etherscan.io/apis))
+
+* Python 3.11+
+* Etherscan API key ([create one here](https://etherscan.io/apis))
 
 ### Optional
-- Docker (for containerized workflows)
-- Node.js + Truffle + Ganache (for smart contract workflows)
+
+* Docker (for containerized workflows)
+* Node.js + Truffle + Ganache (for smart contract workflows)
 
 ---
 
 ## Quick Start
 
-### 1. Clone the repository
+### Option 1: Run locally with Python
+
+#### 1. Clone the repository
 
 ```bash
 git clone https://github.com/ouiamerehouni-lang/ChainML-Guard.git
 cd ChainML-Guard
 ```
 
-### 2. Configure environment
+#### 2. Configure environment
 
 ```bash
 cp .env.example .env
@@ -127,23 +133,64 @@ Edit `.env` and add:
 ETHERSCAN_API_KEY=your_actual_api_key_here
 ```
 
-### 3. Create a virtual environment
+#### 3. Create a virtual environment
 
 ```bash
 python3.11 -m venv venv
 source venv/bin/activate
 ```
 
-### 4. Install dependencies
+#### 4. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 5. Run the application
+#### 5. Run the application
 
 ```bash
 python app.py
+```
+
+Open:
+
+```text
+http://localhost:5000
+```
+
+---
+
+### Option 2: Run with Docker
+
+#### 1. Clone the repository
+
+```bash
+git clone https://github.com/ouiamerehouni-lang/ChainML-Guard.git
+cd ChainML-Guard
+```
+
+#### 2. Configure environment
+
+```bash
+cp .env.example .env
+```
+
+Edit `.env` and add:
+
+```bash
+ETHERSCAN_API_KEY=your_actual_api_key_here
+```
+
+#### 3. Build the Docker image
+
+```bash
+docker build -t chainml-guard .
+```
+
+#### 4. Run the container
+
+```bash
+docker run --rm --env-file .env -p 5000:5000 chainml-guard
 ```
 
 Open:
@@ -201,6 +248,20 @@ Run robustness evaluation:
 python experiments/robust_evaluation.py
 ```
 
+### Docker: Evaluation Commands
+
+Compare models:
+
+```bash
+docker run --rm --env-file .env chainml-guard python experiments/evaluate_models.py
+```
+
+Run robustness evaluation:
+
+```bash
+docker run --rm --env-file .env chainml-guard python experiments/robust_evaluation.py
+```
+
 ---
 
 ## API Reference
@@ -242,10 +303,11 @@ Response:
 ```
 
 Status codes:
-- `200`: success
-- `400`: invalid address format
-- `429`: rate limit exceeded
-- `500`: server error
+
+* `200`: success
+* `400`: invalid address format
+* `429`: rate limit exceeded
+* `500`: server error
 
 ### GET `/dashboard`
 
@@ -255,34 +317,29 @@ Returns the analysis history dashboard.
 
 ## Model Performance
 
-### Production Model: Random Forest
+### Deployed Application Model: MLP Neural Network
 
-| Metric | 5-Fold CV | 10 Repeated Splits |
-|--------|-----------|-------------------|
-| Accuracy | 98.89% +/- 1.04% | 98.75% +/- 1.15% |
-| Precision | 98.56% +/- 1.91% | 99.02% +/- 1.62% |
-| Recall | 99.50% +/- 1.00% | 98.75% +/- 1.25% |
-| F1 Score | 99.01% +/- 0.92% | 98.88% +/- 1.03% |
-| ROC-AUC | 0.9993 +/- 0.0014 | 0.9996 +/- 0.0005 |
+The application uses the MLP model for fraud screening in the live workflow.
 
-### Model Comparison
+### Benchmark Results
 
-| Model | F1 Score | ROC-AUC | Best For |
-|-------|----------|---------|----------|
-| Random Forest | 99.01% | 0.9993 | Production |
-| MLP Neural Net | 97.55% | 0.9967 | Complex patterns |
-| Logistic Regression | 97.08% | 0.9973 | Fast inference |
+| Model               | 5-Fold CV F1 | 10 Repeated Splits F1 | 5-Fold CV ROC-AUC | 10 Repeated Splits ROC-AUC | Role                       |
+| ------------------- | ------------ | --------------------- | ----------------- | -------------------------- | -------------------------- |
+| MLP Neural Net      | 97.55%       | 98.17%                | 0.9967            | 0.9982                     | Deployed application model |
+| Random Forest       | 99.01%       | 98.88%                | 0.9993            | 0.9996                     | Strongest benchmark        |
+| Logistic Regression | 97.08%       | 97.22%                | 0.9973            | 0.9986                     | Fast baseline              |
 
 ### Dataset
 
-- Size: 360 Ethereum addresses
-- Split: 80% train (288), 20% test (72)
-- Source: ethereum-lists (darklist + lightlist)
-- Labels:
-  - 44.4% legitimate (160)
-  - 55.6% fraudulent (200)
-- Validation: 5-fold cross-validation and repeated random splits
-- Data leakage check: passed (label shuffle test near random baseline)
+* Size: 360 Ethereum addresses
+* Split: 80% train (288), 20% test (72)
+* Source: ethereum-lists (darklist + lightlist)
+* Labels:
+
+  * 44.4% legitimate (160)
+  * 55.6% fraudulent (200)
+* Validation: 5-fold cross-validation and repeated random splits
+* Data leakage check: passed (label shuffle test near random baseline)
 
 ---
 
