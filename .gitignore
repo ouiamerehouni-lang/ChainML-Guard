@@ -36,6 +36,9 @@ package-lock.json
 !results/
 results/*
 !results/bench_compute_only.json
+!results/model_diagnostics.json
+!results/model_diagnostics.png
+!results/model_diagnostics.pdf
 robust_eval_output.log
 
 # OS

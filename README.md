@@ -375,6 +375,38 @@ Results are saved to **`results/bench_compute_only.json`** with:
 For complete documentation, see [`docs/INFERENCE_BENCHMARK.md`](docs/INFERENCE_BENCHMARK.md).
 
 ---
+## Reproducing model diagnostics
+
+Generate the confusion matrices and ROC curves for Logistic Regression, Random Forest, and the MLP with:
+
+```bash
+docker run --rm -v "$(pwd):/app" --env-file .env chainml-guard \
+python experiments/generate_model_diagnostics.py
+```
+
+The script uses stratified five-fold cross-validation with out-of-fold predictions and saves the outputs to:
+
+- `results/model_diagnostics.json`
+- `results/model_diagnostics.png`
+- `results/model_diagnostics.pdf`
+
+The JSON file contains:
+
+- confusion-matrix values for each model;
+- pooled out-of-fold ROC-AUC scores;
+- false-positive-rate and true-positive-rate coordinates;
+- the evaluation seed;
+- the number of out-of-fold predictions;
+- and the evaluation protocol details.
+
+The generated composite figure contains:
+
+- the Logistic Regression confusion matrix;
+- the Random Forest confusion matrix;
+- the MLP confusion matrix;
+- and the combined ROC curves for all three models.
+
+These diagnostics are intended for reproducibility and support the evaluation results reported in the paper.
 
 ## Project Structure
 
