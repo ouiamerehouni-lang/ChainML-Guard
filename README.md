@@ -22,6 +22,7 @@ Protect yourself from malicious addresses before it is too late.
 - [Usage Guide](#usage-guide)
 - [API Reference](#api-reference)
 - [Model Performance](#model-performance)
+- [Reproducing the Inference Benchmark](#reproducing-the-inference-benchmark)
 - [Project Structure](#project-structure)
 
 ---
@@ -340,6 +341,38 @@ The application uses the MLP model for fraud screening in the live workflow.
   * 55.6% fraudulent (200)
 * Validation: 5-fold cross-validation and repeated random splits
 * Data leakage check: passed (label shuffle test near random baseline)
+
+---
+
+## Reproducing the Inference Benchmark
+
+To verify the inference latency measurements reported in the paper, run the benchmark script:
+
+### Quick Start
+
+```bash
+docker run --rm -v $(pwd):/app --env-file .env chainml-guard python experiments/benchmark_inference.py
+```
+
+### What is Measured
+
+The benchmark measures **local computational cost only** (CPU inference):
+- Feature preprocessing: ~0.3 ms
+- MLP model inference: ~39 ms (dominates total time)
+- Reason summary generation: ~0.01 ms
+- **Total per address: ~39 ms** (no network or Etherscan latency)
+
+### Results
+
+Results are saved to **`results/bench_compute_only.json`** with:
+- Raw timing measurements (50 trials per component)
+- Summary statistics (mean, median, std dev, min, max)
+- Environment details (Python version, TensorFlow version, CPU-only flag, timestamp)
+- Throughput estimate (~25 predictions per second)
+
+### Details
+
+For complete documentation, see [`docs/INFERENCE_BENCHMARK.md`](docs/INFERENCE_BENCHMARK.md).
 
 ---
 
