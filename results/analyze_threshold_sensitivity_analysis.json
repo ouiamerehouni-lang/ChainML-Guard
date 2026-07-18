@@ -1,0 +1,18 @@
+{
+  "source_file": "results/bench_compute_only.json",
+  "derived_from": {
+    "mean_local_computation_time_ms": 39.38333034515381,
+    "formula": "throughput = 1000 / mean_total_time_ms"
+  },
+  "sequential_compute_only_predictions_per_second": 25.39145347120325,
+  "benchmark_environment": {
+    "python_version": "3.11.15",
+    "platform": "Linux",
+    "tensorflow_version": "2.21.0",
+    "scikit_learn_version": "1.9.0",
+    "gpu_available": false,
+    "timestamp": "2026-07-11T13:31:38.224714"
+  },
+  "benchmark_runs": 50,
+  "scope_statement": "This throughput value reflects only local sequential compute for preprocessing + model inference + explanation generation. It explicitly excludes Etherscan API retrieval, network communication, Flask/web-server overhead, and concurrent-request or production-load behavior. It must not be interpreted as end-to-end application throughput."
+}

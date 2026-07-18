@@ -1,0 +1,122 @@
+{
+  "metadata": {
+    "timestamp": "2026-07-18T21:49:14.946397",
+    "dataset_size": 360,
+    "class_counts": {
+      "legitimate": 160,
+      "malicious": 200
+    },
+    "n_out_of_fold_predictions": 360,
+    "thresholds_evaluated": [
+      0.3,
+      0.4,
+      0.5,
+      0.6,
+      0.7
+    ],
+    "random_seed": 42,
+    "cross_validation_protocol": "Stratified 5-fold cross-validation (shuffle=True, random_state=42), pooled out-of-fold probabilities.",
+    "probability_thresholding_confirmation": "Metrics were computed by thresholding pooled out-of-fold probability outputs, not binary model outputs.",
+    "single_held_out_prediction_confirmation": "Verified: each sample received exactly one held-out prediction.",
+    "feature_columns": [
+      "balance",
+      "tx_count",
+      "age_days"
+    ],
+    "label_column": "is_fraud",
+    "mlp_training_configuration": {
+      "epochs": 120,
+      "batch_size": 16,
+      "validation_split": 0.1,
+      "shuffle": true,
+      "optimizer": "Adam(learning_rate=0.001)"
+    },
+    "threshold_0_50_reference_check": {
+      "expected": {
+        "TN": 151,
+        "FP": 9,
+        "FN": 1,
+        "TP": 199
+      },
+      "actual": {
+        "TN": 151,
+        "FP": 9,
+        "FN": 1,
+        "TP": 199
+      },
+      "match": true
+    }
+  },
+  "threshold_results": [
+    {
+      "threshold": 0.3,
+      "precision": 0.943127962085308,
+      "recall": 0.995,
+      "f1_score": 0.9683698296836983,
+      "accuracy": 0.9638888888888889,
+      "TN": 148,
+      "FP": 12,
+      "FN": 1,
+      "TP": 199,
+      "predicted_malicious_count": 211,
+      "predicted_legitimate_count": 149,
+      "confusion_total": 360
+    },
+    {
+      "threshold": 0.4,
+      "precision": 0.9521531100478469,
+      "recall": 0.995,
+      "f1_score": 0.9731051344743277,
+      "accuracy": 0.9694444444444444,
+      "TN": 150,
+      "FP": 10,
+      "FN": 1,
+      "TP": 199,
+      "predicted_malicious_count": 209,
+      "predicted_legitimate_count": 151,
+      "confusion_total": 360
+    },
+    {
+      "threshold": 0.5,
+      "precision": 0.9567307692307693,
+      "recall": 0.995,
+      "f1_score": 0.9754901960784313,
+      "accuracy": 0.9722222222222222,
+      "TN": 151,
+      "FP": 9,
+      "FN": 1,
+      "TP": 199,
+      "predicted_malicious_count": 208,
+      "predicted_legitimate_count": 152,
+      "confusion_total": 360
+    },
+    {
+      "threshold": 0.6,
+      "precision": 0.9754901960784313,
+      "recall": 0.995,
+      "f1_score": 0.9851485148514851,
+      "accuracy": 0.9833333333333333,
+      "TN": 155,
+      "FP": 5,
+      "FN": 1,
+      "TP": 199,
+      "predicted_malicious_count": 204,
+      "predicted_legitimate_count": 156,
+      "confusion_total": 360
+    },
+    {
+      "threshold": 0.7,
+      "precision": 0.979381443298969,
+      "recall": 0.95,
+      "f1_score": 0.9644670050761421,
+      "accuracy": 0.9611111111111111,
+      "TN": 156,
+      "FP": 4,
+      "FN": 10,
+      "TP": 190,
+      "predicted_malicious_count": 194,
+      "predicted_legitimate_count": 166,
+      "confusion_total": 360
+    }
+  ]
+}

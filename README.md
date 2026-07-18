@@ -23,6 +23,8 @@ Protect yourself from malicious addresses before it is too late.
 - [API Reference](#api-reference)
 - [Model Performance](#model-performance)
 - [Reproducing the Inference Benchmark](#reproducing-the-inference-benchmark)
+- [Reproducing model diagnostics](#reproducing-model-diagnostics)
+- [Threshold sensitivity and compute-only throughput](#threshold-sensitivity-and-compute-only-throughput)
 - [Project Structure](#project-structure)
 
 ---
@@ -407,6 +409,33 @@ The generated composite figure contains:
 - and the combined ROC curves for all three models.
 
 These diagnostics are intended for reproducibility and support the evaluation results reported in the paper.
+
+## Threshold sensitivity and compute-only throughput
+
+This subsection provides the remaining reproducible artifacts requested by Reviewer #4.
+
+### Reproducible commands
+
+Run threshold-sensitivity analysis (MLP, pooled out-of-fold probabilities, stratified 5-fold CV):
+
+```bash
+docker run --rm -v "$(pwd):/app" --env-file .env chainml-guard \
+python experiments/analyze_threshold_sensitivity.py
+```
+
+Compute-only sequential throughput is derived from `results/bench_compute_only.json` using:
+
+```text
+throughput = 1000 / mean_total_time_ms
+```
+
+### Generated files
+
+- `results/threshold_sensitivity.csv`
+- `results/threshold_sensitivity.json`
+- `results/analyze_threshold_sensitivity_analysis.json`
+
+The throughput value is compute-only and excludes Etherscan retrieval, network communication, Flask overhead, and concurrent-load behavior.
 
 ## Project Structure
 
